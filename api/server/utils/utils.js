@@ -1,37 +1,53 @@
-export default class Util {
-    constructor() {
-      this.statusCode = null;
-      this.type = null;
-      this.data = null;
-      this.message = null;
+class Util {
+constructor() {
+        this.success = false;
+        this.origin = "";
+        this.process = "0";
+        this.status = undefined;
+        this.message = "Failed transaction";
+        this.response = undefined;
+        this.token = null;
     }
-  
-    setSuccess(statusCode, message, data) {
-      this.statusCode = statusCode;
-      this.message = message;
-      this.data = data;
-      this.type = 'success';
+    setSuccess(success) {
+        this.success = success;
+        return this;
     }
-  
-    setError(statusCode, message) {
-      this.statusCode = statusCode;
-      this.message = message;
-      this.type = 'error';
+    setOrigen(origin) {
+        this.origin = origin;
+        return this;
     }
-  
-    send(res) {
-      const result = {
-        status: this.type,
-        message: this.message,
-        data: this.data,
-      };
-  
-      if (this.type === 'success') {
-        return res.status(this.statusCode).json(result);
-      }
-      return res.status(this.statusCode).json({
-        status: this.type,
-        message: this.message,
-      });
+    setProcess(process) {
+        this.process = process;
+        return this;
+    }
+    setStatus(status) {
+        this.status = status;
+        return this;
+    }
+    setMessage(message) {
+        this.message = message;
+        return this;
+    }
+    setResponse(response) {
+        this.response = response;
+        return this;
+    }
+    setToken(token) {
+        this.token = token;
+        return this;
+    }
+    build() {
+        return {
+            success: this.success,
+            origin: this.origin,
+            process: this.process,
+            status: this.status,
+            message: this.message ||
+                (this.success ? "Execution successfully" : "Failed transaction"),
+            token: this.token,
+            response: this.response
+        };
     }
   }
+
+  module.exports = {Util}

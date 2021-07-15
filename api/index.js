@@ -1,14 +1,21 @@
-const express = require("express");
-const app = express();
-const port = 3000;
-import bodyParser from 'body-parser';
-import router from './server/routes/routes';;
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+const express = require('express')
+const app = express()
+require('dotenv').config()
+const port = process.env.PORT || 5000
+const router = require('./server/routes/routes');
+// !important! 
+// you need to install the following libraries |express|[dotenv > if required]
+// or run this command >> npm i express dotenv 
 app.use('/api/v1',router);
+app.get('/' , (req , res)=>{
 
-app.get("/", (req, res) => res.send("Hello Golky Back!"));
-app.listen(port, () => console.log(`Golky Back app listening on port ${port}!`));
+   res.send('hello from simple server :)')
 
-module.exports = app;
+})
+
+
+app.listen(port , ()=> console.log('> Server is up and running on port : ' + port))
+
+module.exports = {
+   app
+}

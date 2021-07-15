@@ -1,12 +1,8 @@
-import { Router } from 'express';
-import  clientesController from'../controllers/clientesController';
+const Router = require('express');
+const golkyController = require('../controllers/golkycontroller');
 
 const router = Router();
 
-router.get('/clientes', clientesController.getAllClientes);
-router.post('/crearCliente', clientesController.crearCliente);
-router.get('/consultarCliente/:id', clientesController.consultarCliente);
-router.put('/actualizarCliente/:id', clientesController.actualizarCliente);
-router.delete('/eliminarCliente/:id', clientesController.eliminarCliente);
+router.get('/sendParam/:text', golkyController.getDataTest);
 
-export default router;
+module.exports = router;
