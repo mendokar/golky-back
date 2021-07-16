@@ -5,7 +5,7 @@ const port = process.env.PORT || 5000
 const router = require('./server/routes/routes');
 const cors = require('cors')
 var corsOptions = {
-   origin: ['https://golky-front.herokuapp.com//', 'http://localhost:4200/', '*', 'https://golky-front.herokuapp.com/'
+   origin: ['https://golky-front.herokuapp.com/', 'http://localhost:4200/', '*', 'https://golky-front.herokuapp.com'
    ]
 }
 app.options('*', cors(corsOptions))
